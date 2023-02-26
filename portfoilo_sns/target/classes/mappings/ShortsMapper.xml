@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="ShortsMapper">
+   
+   <insert id = "insertShorts" parameterType = "shorts">
+  	insert into Shorts(sSeq, id, sTitle, sContent, upload)
+  	values(shorts_seq.NEXTVAL, #{id}, #{sTitle},  #{sContent}, #{upload})
+  </insert>
+  
+  <update id = "updateShorts" parameterType = "shorts">
+  	update Shorts set id=#{id}, sTitle=#{sTitle}, sContent=#{sContent}, upload=#{upload}
+  	where sSeq=#{sSeq}
+  </update>
+  
+  
+  <delete id="deleteShorts" parameterType="shorts">
+  	delete shorts where sSeq=#{sSeq}
+  
+  </delete>
+  
+  <select id ="getShorts" resultType="shorts">
+  	select * from shorts where sSeq=#{sSeq}
+  
+  </select>
+  
+  <select id="getShortsList" resultType="shorts">
+  	select * from shorts
+  	where sTitle like '%'||#{searchKeyword}||'%'
+  	order by sSeq DESC
+  </select>
+  
+  <select id="shortsCount" resultType="Integer">
+  	select count(*) from Shorts
+  	where id =#{id}
+  </select>
+
+
+	<update id ="shortslikeUpdate" parameterType="shorts">
+		update Shorts set count = #{count}
+		where sSeq = #{sSeq}
+	
+	</update>
+
+
+<!-- - -->
+	<update id="updatePay" parameterType="shorts">
+		UPDATE board
+		SET pay=pay+1
+		WHERE sSeq=#{sSeq}
+	</update>
+  
+
+</mapper>
+
+
+
+
+
+
+
+
+
+

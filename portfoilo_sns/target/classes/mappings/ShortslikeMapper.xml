@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ShortslikeMapper">
+
+
+<!--  좋아요 누르기 -->
+<insert id = "insertlike" parameterType="shortslike">
+	insert into Shorts_like(like_seq, id, sSeq, like_cnt )
+		values (like_seq.NEXTVAL, #{id}, #{sSeq}, #{like_cnt})
+</insert>
+
+<!--  조아요 삭제 -->
+<delete id = "deletelike" parameterType="shortslike">
+	delete Shorts_like
+	where id=#{id} and sSeq=#{sSeq}
+	
+</delete>
+
+<!--  좋아요 개수 세기 -->
+<select id = "countlike" resultType="Integer">
+	select count(*)
+	from Shorts_like a, Shorts b 
+	where a.sSeq = b.sSeq and a.sSeq=#{sSeq}
+
+</select>
+
+
+<select id="like" parameterType="Shortslike">
+	select * from Shorts_like
+	where id=#{id}, sSeq=#{sSeq}
+</select>
+
+
+<select id = "likeShorts" resultType="Shortslike">
+	select sSeq 
+	from Shorts_like
+	where id = #{id}
+
+</select>
+
+
+
+
+</mapper>
+
+
+
+
