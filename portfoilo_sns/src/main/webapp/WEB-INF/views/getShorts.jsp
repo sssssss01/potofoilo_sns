@@ -295,12 +295,22 @@ function like(){
 
 function toggle(element) {
 	var con = document.getElementById(element.getAttribute("id"));
-	if (con.style.display == 'none') {	
-		con.style.display = 'block';
+
+	//console.log(element);
+	var $toggle_box = $(element).find("ul:eq(0)");
+	
+	if ($toggle_box.css("display") == "none") {
+		$toggle_box.css("display", "block");
 	} else {
-		con.style.display = 'none';
+		$toggle_box.css("display", "none");
 	}
 }
+
+//$('#toggle_box3').click(function(event){
+	
+	//$(this).children("#toggle_box3").toggle();	
+// });
+
 
 
 //댓글 함수
@@ -314,28 +324,27 @@ function toggle(element) {
 		
 		if(commentList.length > 0) {	
 			$.each(commentList, function(key, value){
-				html += "<div class=\"user_container-detail\" id = \"scSeq\" >";
-	            html += "<div class=\"user\"><img src='profile/${getshortsList[status.index].profile}' alt=\"user\"></div>";  //프로필사진
+				console.log("key=", key);
+				html += "<div class=\"user_container-detail\" id = \"scSeq"+value.scSeq+"\">";
+	            html += "<div class=\"user\"><img src=\"imgs/thumb02.jpg\" alt=\"user\"></div>";  //프로필사진
 	            html += "<div class=\"comment\">";
-	            html += "<span class=\"user_id\">" + value.id + "</span>" + value.content;
+	            html += "<span class=\"user_id\" >" + value.id + "</span>" + value.content ;
 	            html += "<div class=\"time\">" + displayTime(value.indate);
 				html += "<div class=\"icon_wrap\">";
 	            html += "<div class=\"more_trigger\">";
 	            
-	            //토글창
-	            html += "<div class=\"sprite_more_icon\" data-name=\"more\" onclick=\"toggle(this.children[0])\">";  //
+	            //html += "<div class=\"sprite_more_icon\" data-name=\"more\" onclick=\"toggle(this.children[0])\">";  //
+	            html += "<div class=\"sprite_more_icon\" data-name=\"more\" onclick=\"toggle(this)\">";  //
 	            html += "<ul class=\"toggle_box\" id=\"toggle_box3\">";  
-	            html += "<li><input type=\"button\" id=\"updateComment\" onclick=\"updateCommentView(" + value.sSeq + "," + value.scSeq + ")\" value='댓글수정'></li>";
-	            html += "<li><input type=\"button\" id=\"deleteComment\" onclick=\"deleteComment(" + value.sSeq + "," + value.scSeq + ")\" value='댓글삭제'></li>";
+	           // html += "<li><input type=\"button\" id=\"updateComment\" onclick=\"updateCommentView(" + value.sSeq + "," + value.scSeq + ")\" value='댓글수정'></li>";
+	            html += "<li><input type=\"button\" id=\"updateComment"+value.scSeq+"\" onclick=\"updateCommentView(" + value.sSeq + "," + value.scSeq + ", '" + value.content+"')\" value='댓글수정'></li>";
+	            html += "<li><input type=\"button\" id=\"deleteComment"+value.scSeq+"\" onclick=\"deleteComment(" + value.sSeq + "," + value.scSeq + ")\" value='댓글삭제'></li>";
 	            html += "</ul>";        
 	            html += "</div>"; //
 	            
 	            html += "</div>";
-	            
-	            html += "<div>";
-	           // html += "<div class="sprite_small_heart_icon_outline"></div>"
-	            html += "</div>";
-	            
+		            html += "<div>";
+		            html += "</div>";
 	            html += "</div>";
 	            html += "</div>";
 	            html += "</div>";
@@ -378,49 +387,51 @@ function getCommentList() {
 //----------------- 수정
 
 function updateCommentView(sSeq, scSeq, content) {
-	var scSeq = $("#scSeq").val();
-	var content =$("#content").val();
+//	var scSeq = $("#scSeq").val();
 	var id = document.getElementById("id").value;
+//	var content = $('#content').val();
 	//var content = document.getElementById("content").value;
+	console.log("sSeq=", sSeq);
+	console.log("scSeq=", scSeq);
+	console.log("content=", content);
 	
 	var html = "";
-	
-	html += "<div class=\"user_container-detail\" id = 'scSeq'" + scSeq + ">";
-    html += "<div class=\"user\"><img src='profile/${sessionScope.user.profile}' alt=\"user\"></div>";  //프로필사진
+	html += "<div class=\"user_container-detail\" id = 'scSeq"+scSeq+"'>";
+    html += "<div class=\"user\"><img src=\"imgs/thumb02.jpg\" alt=\"user\"></div>";  //프로필사진
     html += "<div class=\"comment\">";
     html += "<span class=\"user_id\">" + id + "</span>";
     
-    html += "<div class= \"comment_input\">" 
-    html += "<input type=\"text\" id=\"updatecontent\" name=\"content\" value='"+ content + "'> <br>";
-    html += "<input type=\"button\" id=\"button\" onclick='updateComment(" + sSeq + "," + scSeq + ")' value=\"수정완료\"> &nbsp";
-    //html += "<input type=\"button\" id=\"button\" onclick=\"updateComment(" + scSeq + ")\" value=\"수정완료\"> &nbsp" ;
+    html += "<div class= \"comment_input\">";  //수정하기
+    html += "<input type=\"text\" id=\"content\" name=\"content\" value='"+ content + "'> <br>";
+    html += "<input type=\"button\" id=\"button\" onclick=\"updateComment("+sSeq+","+scSeq+",'"+content + "')\" value=\"수정완료\"> &nbsp" ;
     
     html += "<input type=\"button\" id=\"button\" onclick=\"showHTML(commentList)\" value=\"취소\">";
     html += "</div>";
     
     html += "</div>"; //
     html += "</div>";
-    html += "</div>";
-    html += "</div>";
-    html += "</div>";
-    html += "</div>";
-    html += "</div>";
-    html += "</div>";
-    
+//    html += "</div>";
+//    html += "</div>";
+//    html += "</div>";
+//    html += "</div>";
+//    html += "</div>";
+//    html += "</div>";
+    console.log("html=", html);
+ 
     $("#scSeq" + scSeq).replaceWith(html);
     //$("#scSeq" + scSeq).replaceWith(html);
-    $("#scSeq" + scSeq + "#updateContent").focus();
+    $("#scSeq" + scSeq + "#content").focus();
 }	
 
 
-function updateComment(sSeq, scSeq){
-	var updatecontent = $('#updatecontent').val();
+function updateComment(sSeq, scSeq, content){
+	var content = $('#content').val();
 	
 	$.ajax({
 		type : 'POST',
 		url : 'comments/updateComment',
 		//dataType : 'json',
-		data : {"sSeq":sSeq, "scSeq":scSeq, "content":updatecontent },
+		data : {"sSeq":sSeq, "scSeq":scSeq, "content":content },
 		success : function(data){
 			if(data == 'success'){
 				getCommentList();
@@ -428,7 +439,7 @@ function updateComment(sSeq, scSeq){
 			}	
 		}, 
 		error : function(request, status, error){
-			alert("error: " + error);
+			alert("error: " + request, status, error);
 		
 		}
 		

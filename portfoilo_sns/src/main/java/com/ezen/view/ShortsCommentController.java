@@ -44,9 +44,11 @@ public class ShortsCommentController {
 		}	
 	}
 	
+
 	@PostMapping(value="/updateComment")
 	public String updateComment(ShortsCommentVO vo, Model model, HttpSession session)throws IOException {
 		MemberVO user = (MemberVO)session.getAttribute("user");
+		System.out.println("updateComment vo: " + vo);
 		
 		if(session.getAttribute("user") == null) {
 			return "not_login";
@@ -80,10 +82,13 @@ public class ShortsCommentController {
 	@ResponseBody
 	public Map<String, Object> getCommentList(ShortsCommentVO vo){
 		System.out.println("getCommentList vo: "+ vo);
+		
 		Map<String, Object> comment = new HashMap<>();
 		
 		List<ShortsCommentVO> list = service.getCommentList(vo.getsSeq());
-		
+		for(ShortsCommentVO sc : list) {
+			System.out.println("getCommentList commentList="+sc);
+		}
 		comment.put("total", list.size());
 		comment.put("commentList", list);
 		
