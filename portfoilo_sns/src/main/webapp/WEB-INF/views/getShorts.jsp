@@ -76,7 +76,7 @@
         <section class="h_inner">
 
             <h1 class="logo">
-                <a href="index.html">
+                <a href="/">
                     <div class="sprite_insta_icon"></div>
                     <div>
                         <div class="sprite_write_logo"></div>
@@ -96,9 +96,9 @@
 
             <div class="right_icons">
                 <a href="insertShorts"><div class="sprite_camera_icon"></div></a>
-                <a href="login.html"><div class="sprite_compass_icon"></div></a>
+                <a href="home.do"><div class="sprite_compass_icon"></div></a>
                 <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
-                <a href="profile.html"><div class="sprite_user_icon_outline"></div></a>
+                <a href="profile.do?id=${sessionScope.user.id}"><div class="sprite_user_icon_outline"></div></a>
             </div>
         </section>
     </header>
@@ -326,7 +326,7 @@ function toggle(element) {
 			$.each(commentList, function(key, value){
 				console.log("key=", key);
 				html += "<div class=\"user_container-detail\" id = \"scSeq"+value.scSeq+"\">";
-	            html += "<div class=\"user\"><img src=\"imgs/thumb02.jpg\" alt=\"user\"></div>";  //프로필사진
+	            html += "<div class=\"user\"><img src=\"profile/${getshortsList[status.index].profile}\" alt=\"user\"></div>";  //프로필사진
 	            html += "<div class=\"comment\">";
 	            html += "<span class=\"user_id\" >" + value.id + "</span>" + value.content ;
 	            html += "<div class=\"time\">" + displayTime(value.indate);
@@ -335,8 +335,7 @@ function toggle(element) {
 	            
 	            //html += "<div class=\"sprite_more_icon\" data-name=\"more\" onclick=\"toggle(this.children[0])\">";  //
 	            html += "<div class=\"sprite_more_icon\" data-name=\"more\" onclick=\"toggle(this)\">";  //
-	            html += "<ul class=\"toggle_box\" id=\"toggle_box3\">";  
-	           // html += "<li><input type=\"button\" id=\"updateComment\" onclick=\"updateCommentView(" + value.sSeq + "," + value.scSeq + ")\" value='댓글수정'></li>";
+	            html += "<ul class=\"toggle_box\" id=\"toggle_box3\">";      
 	            html += "<li><input type=\"button\" id=\"updateComment"+value.scSeq+"\" onclick=\"updateCommentView(" + value.sSeq + "," + value.scSeq + ", '" + value.content+"')\" value='댓글수정'></li>";
 	            html += "<li><input type=\"button\" id=\"deleteComment"+value.scSeq+"\" onclick=\"deleteComment(" + value.sSeq + "," + value.scSeq + ")\" value='댓글삭제'></li>";
 	            html += "</ul>";        
@@ -387,10 +386,9 @@ function getCommentList() {
 //----------------- 수정
 
 function updateCommentView(sSeq, scSeq, content) {
-//	var scSeq = $("#scSeq").val();
+
 	var id = document.getElementById("id").value;
-//	var content = $('#content').val();
-	//var content = document.getElementById("content").value;
+
 	console.log("sSeq=", sSeq);
 	console.log("scSeq=", scSeq);
 	console.log("content=", content);
@@ -410,16 +408,11 @@ function updateCommentView(sSeq, scSeq, content) {
     
     html += "</div>"; //
     html += "</div>";
-//    html += "</div>";
-//    html += "</div>";
-//    html += "</div>";
-//    html += "</div>";
-//    html += "</div>";
-//    html += "</div>";
+
     console.log("html=", html);
  
     $("#scSeq" + scSeq).replaceWith(html);
-    //$("#scSeq" + scSeq).replaceWith(html);
+  
     $("#scSeq" + scSeq + "#content").focus();
 }	
 
