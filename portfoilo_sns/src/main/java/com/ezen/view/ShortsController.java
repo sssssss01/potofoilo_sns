@@ -38,7 +38,7 @@ public class ShortsController {
 		ShortsVO shorts = shos.getShorts(vo);
 		model.addAttribute("shorts", shorts);
 
-		System.out.println("--getShorts controller 실행: " + shorts);
+		//System.out.println("--getShorts controller 실행: " + shorts);
 		return "getShorts";
 
 	}

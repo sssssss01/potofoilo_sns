@@ -78,27 +78,6 @@
 			</c:forEach>
 		</c:if>
 
-		<!-- 쇼츠 게시글 -->
-
-		<c:if
-			test="${fn:contains(sessionScope.shortsBookMarkNums, shorts.sSeq)}">
-			<c:forEach items="${shortsBookMarkList}" var ="shorts">
-				<article class="contents">
-					<div class="mylist_contents contents_container active">
-						<div class="content">
-							<a href="getShorts?sSeq=${shorts.sSeq}"> <video
-									id="video-player" onmouseover="this.play()"
-									onmouseout="this.pause()" preload="metadata">
-									<source src="shorts/${shorts.upload}#t=0.5">
-								</video> 
-							</a>
-						</div>
-					</div>
-					<div class="timer">${time[status.index]}</div>
-				</article>
-				${shorts.bmTitle}
-				<br>
-			</c:forEach>
-		</c:if>
+		
 </body>
 </html>

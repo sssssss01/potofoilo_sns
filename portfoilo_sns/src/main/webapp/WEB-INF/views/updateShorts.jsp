@@ -45,7 +45,7 @@
         <section class="h_inner">
 
             <h1 class="logo">
-                <a href="index.html">
+                <a href="home.do">
                     <div class="sprite_insta_icon"></div>
                     <div>
                         <div class="sprite_write_logo"></div>
@@ -64,10 +64,10 @@
 
 
             <div class="right_icons">
-                <a href="new_post.html"><div class="sprite_camera_icon"></div></a>
-                <a href="login.html"><div class="sprite_compass_icon"></div></a>
-                <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
-                <a href="profile.html"><div class="sprite_user_icon_outline"></div></a>
+                <a href="insertShorts"><div class="sprite_camera_icon"></div></a>
+                <a href="/"><div class="sprite_compass_icon"></div></a>
+                <a href="followList.do"><div class="sprite_heart_icon_outline"></div></a>
+                <a href="profile.do?id=${sessionScope.user.id}"><div class="sprite_user_icon_outline"></div></a>
             </div>
         </section>
     </header>
@@ -101,7 +101,7 @@
                     <input type="file" name="uploadFile" id="id_photo" required="required" value="${shortsvo.upload}" accept="video/*">
                 </p>
                 <p>
-                	<input type ="text" name="sTitle" placeholder="제목을 입력하세요" maxlength="28" value="${shortsvo.sTitle}">
+                	<input type ="text" name="sTitle" id="sTitle" placeholder="제목을 입력하세요" maxlength="28" value="${shortsvo.sTitle}">
                     <textarea name="sContent" id="text_field" cols="50" rows="5" placeholder="140자 까지 등록 가능합니다.">${shortsvo.sContent}</textarea>
 
                 </p>

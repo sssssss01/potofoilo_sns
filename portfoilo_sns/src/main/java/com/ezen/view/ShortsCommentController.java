@@ -81,7 +81,7 @@ public class ShortsCommentController {
 	@RequestMapping(value="/getCommentList", produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public Map<String, Object> getCommentList(ShortsCommentVO vo){
-		System.out.println("getCommentList vo: "+ vo);
+		//System.out.println("getCommentList vo: "+ vo);
 		
 		Map<String, Object> comment = new HashMap<>();
 		

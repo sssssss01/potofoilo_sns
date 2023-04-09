@@ -99,7 +99,7 @@
 
 				<input type="hidden" id="check" value="${sessionScope.user.id}">
 				<div class="right_icons">
-					<a id="goProfile1" href="goInsertBoard.do" onclick="check_id()"><div
+					<a id="goProfile1" href="insertShorts" onclick="check_id()"><div
 							class="sprite_camera_icon"></div></a> <a id="goProfile2" href="/"
 						onclick="check_id()"><div class="sprite_compass_icon"></div></a> <a
 						id="goProfile3" href="getLikeList.do?id=${sessionScope.user.id}"

@@ -57,7 +57,7 @@
 			</section>
 
 		</header>
-
+		<!-- 
 		<div class="hidden_menu">
 			<div class="scroll_inner">
 				<div class="user">
@@ -68,7 +68,7 @@
 				</div>
 			</div>
 		</div>
-
+		 -->
 
 		<section id="main_container">
 			<div class="inner">
@@ -81,8 +81,8 @@
 							<header class="top">
 								<div class="user_container">
 									<div class="profile_img">
-										<a href="profile.do?id=${board.id}"><img
-											src="profile/${memberList[status.index].profile}"
+										<a href="profile.do?id=${board.id}">
+										<img src="profile/${memberList[status.index].profile}"
 											alt="프로필이미지"></a>
 									</div>
 									<div class="user_name">

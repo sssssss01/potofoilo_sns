@@ -76,7 +76,7 @@
         <section class="h_inner">
 
             <h1 class="logo">
-                <a href="index.html">
+                <a href="home.do">
                     <div class="sprite_insta_icon"></div>
                     <div>
                         <div class="sprite_write_logo"></div>
@@ -96,9 +96,9 @@
 
             <div class="right_icons">
                 <a href="insertShorts"><div class="sprite_camera_icon"></div></a>
-                <a href="login.html"><div class="sprite_compass_icon"></div></a>
-                <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
-                <a href="profile.html"><div class="sprite_user_icon_outline"></div></a>
+                <a href="/"><div class="sprite_compass_icon"></div></a> <!-- 로그인창 -->
+                <a href="followList.do"><div class="sprite_heart_icon_outline"></div></a>
+                <a href="profile.do?id=${sessionScope.user.id}"><div class="sprite_user_icon_outline"></div></a>
             </div>
         </section>
     </header>
@@ -130,7 +130,9 @@
                         <header class="top">
                             <div class="user_container">
                                 <div class="profile_img">
-                                    <img src="imgs/thumb.jpeg" alt="">
+                                    <a href="profile.do?id=${shorts.id}">
+										<img src="profile/${sessionScope.user.profile}" alt="프로필이미지">
+									</a>
                                 </div>
                                 <div class="user_name">
                                     <div class="nick_name">${shorts.id}</div>
@@ -138,15 +140,11 @@
                                 </div>
                             </div>
                             <c:if test="${sessionScope.user.id == shorts.id}">
-                            <div class="sprite_more_icon" data-name="more"
-                            onclick="toggle(this.children[0])">
+                            <div class="sprite_more_icon" data-name="more" onclick="toggle(this.children[0])">
                             
                <!-- ----------------------------수정삭제 창 ------------------------- -->
                               <!--   <ul class="more_detail">  --> 
                                 <ul class="toggle_box" id="toggle_box">
-                                    <li><input type="button" class="follow" value="팔로우"
-											data-name="follow"></li>
-											
                                     <li><a href="updateShorts?sSeq=${shorts.sSeq}">
                                    		<input type="button" value="수정"></a></li>
                                     
@@ -165,7 +163,12 @@
                         <!-- 작성자 내용 ---->
                         <section class="scroll_section">
                             <div class="admin_container">
-                                <div class="admin"><img src="imgs/thumb.jpeg" alt="user"></div>
+                                <div class="admin">
+                                <a href="profile.do?id=${shorts.id}">
+                                <img src="profile/${sessionScope.user.profile}" alt="프로필사진">
+                                </a>
+                                </div>
+                                
                                 <div class="comment">
                                     <span class="user_id">${shorts.id}</span> ${shorts.sContent}
                                     <div class="time">${shorts.inDate}</div>
@@ -326,7 +329,7 @@ function toggle(element) {
 			$.each(commentList, function(key, value){
 				console.log("key=", key);
 				html += "<div class=\"user_container-detail\" id = \"scSeq"+value.scSeq+"\">";
-	            html += "<div class=\"user\"><img src=\"imgs/thumb02.jpg\" alt=\"user\"></div>";  //프로필사진
+	            html += "<div class=\"user\"><img src=\"profile/${sessionScope.user.profile}\" alt=\"사용자아이디\"></div>";  //프로필사진
 	            html += "<div class=\"comment\">";
 	            html += "<span class=\"user_id\" >" + value.id + "</span>" + value.content ;
 	            html += "<div class=\"time\">" + displayTime(value.indate);
@@ -387,7 +390,6 @@ function getCommentList() {
 //----------------- 수정
 
 function updateCommentView(sSeq, scSeq, content) {
-//	var scSeq = $("#scSeq").val();
 	var id = document.getElementById("id").value;
 //	var content = $('#content').val();
 	//var content = document.getElementById("content").value;
@@ -397,7 +399,7 @@ function updateCommentView(sSeq, scSeq, content) {
 	
 	var html = "";
 	html += "<div class=\"user_container-detail\" id = 'scSeq"+scSeq+"'>";
-    html += "<div class=\"user\"><img src=\"imgs/thumb02.jpg\" alt=\"user\"></div>";  //프로필사진
+	html += "<div class=\"user\"><img src=\"profile/${sessionScope.user.profile}\" alt=\"사용자아이디\"></div>";  //프로필사진
     html += "<div class=\"comment\">";
     html += "<span class=\"user_id\">" + id + "</span>";
     
@@ -410,12 +412,7 @@ function updateCommentView(sSeq, scSeq, content) {
     
     html += "</div>"; //
     html += "</div>";
-//    html += "</div>";
-//    html += "</div>";
-//    html += "</div>";
-//    html += "</div>";
-//    html += "</div>";
-//    html += "</div>";
+
     console.log("html=", html);
  
     $("#scSeq" + scSeq).replaceWith(html);
