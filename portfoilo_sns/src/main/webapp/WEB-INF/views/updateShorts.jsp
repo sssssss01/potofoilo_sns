@@ -131,7 +131,6 @@ function checkContent(){
 	var video = document.getElementById("id_photo").value; //file id
 	
 	
-	
 		 if(sTitle == ""){
 			alert("제목을 입력하세요");
 			document.getElementById("sTitle").focus();

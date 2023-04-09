@@ -45,7 +45,7 @@
         <section class="h_inner">
 
             <h1 class="logo">
-                <a href="index.html">
+                <a href="home.do">
                     <div class="sprite_insta_icon"></div>
                     <div>
                         <div class="sprite_write_logo"></div>
@@ -64,10 +64,10 @@
 
 
             <div class="right_icons">
-                <a href="new_post.html"><div class="sprite_camera_icon"></div></a>
-                <a href="login.html"><div class="sprite_compass_icon"></div></a>
-                <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
-                <a href="profile.html"><div class="sprite_user_icon_outline"></div></a>
+                <a href="insertShorts"><div class="sprite_camera_icon"></div></a>
+                <a href="/"><div class="sprite_compass_icon"></div></a>
+                <a href="followList.do"><div class="sprite_heart_icon_outline"></div></a>
+                <a href="profile.do?id=${sessionScope.user.id}"><div class="sprite_user_icon_outline"></div></a>
             </div>
         </section>
     </header>

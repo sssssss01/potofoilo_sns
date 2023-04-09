@@ -154,7 +154,7 @@ public class ShortsController {
 			ShortsVO vo, HttpSession session) throws IOException {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		
-		System.out.println("updateShorts vo = " + vo);
+		//System.out.println("updateShorts vo = " + vo);
 		
 		
 		if(!videoFile.isEmpty()) {
@@ -181,7 +181,7 @@ public class ShortsController {
 		} else {
 
 			shos.updateShorts(vo);
-			System.out.println("update controller 실행= " + "제목: " + vo.getsTitle() + " 내용: " + vo.getsContent());
+			//System.out.println("update controller 실행= " + "제목: " + vo.getsTitle() + " 내용: " + vo.getsContent());
 			return "redirect:getShortsList";
 		}
 
@@ -191,7 +191,7 @@ public class ShortsController {
 	public String deleteShorts(ShortsVO vo, Model model, HttpSession session) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 
-		System.out.println("deleteShorts()..... vo=" + vo);
+		//System.out.println("deleteShorts()..... vo=" + vo);
 
 		if (user == null) {
 			return "index";
