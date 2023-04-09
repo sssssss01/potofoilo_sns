@@ -73,7 +73,6 @@
     </header>
 
 
-
     <div id="main_container">
 
         <div class="post_form_container">
