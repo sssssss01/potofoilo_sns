@@ -5,9 +5,9 @@
 
 	<insert id="insertComment" parameterType="comment">
 		INSERT INTO
-		SNS_COMMENT(cseq, bseq,sseq, id, ccontent)
+		SNS_COMMENT(cseq, bseq, id, ccontent)
 		VALUES
-		(sns_comment_seq.NEXTVAL, #{bSeq}, ${sSeq},#{id}, #{ccontent, jdbcType=VARCHAR})
+		(sns_comment_seq.NEXTVAL, #{bSeq}, #{id}, #{ccontent})
 	</insert>
 
 	<delete id="deleteComment" parameterType="comment">
@@ -17,7 +17,7 @@
 
 	<update id="updateComment" parameterType="comment">
 		UPDATE SNS_COMMENT
-		SET ccontent=#{ccontent, jdbcType=VARCHAR}
+		SET ccontent=#{ccontent}
 		WHERE cseq=#{cseq}
 	</update>
 

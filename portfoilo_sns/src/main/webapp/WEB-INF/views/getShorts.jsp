@@ -336,8 +336,7 @@ function toggle(element) {
 	            
 	            //html += "<div class=\"sprite_more_icon\" data-name=\"more\" onclick=\"toggle(this.children[0])\">";  //
 	            html += "<div class=\"sprite_more_icon\" data-name=\"more\" onclick=\"toggle(this)\">";  //
-	            html += "<ul class=\"toggle_box\" id=\"toggle_box3\">";  
-	           // html += "<li><input type=\"button\" id=\"updateComment\" onclick=\"updateCommentView(" + value.sSeq + "," + value.scSeq + ")\" value='댓글수정'></li>";
+	            html += "<ul class=\"toggle_box\" id=\"toggle_box3\">";      
 	            html += "<li><input type=\"button\" id=\"updateComment"+value.scSeq+"\" onclick=\"updateCommentView(" + value.sSeq + "," + value.scSeq + ", '" + value.content+"')\" value='댓글수정'></li>";
 	            html += "<li><input type=\"button\" id=\"deleteComment"+value.scSeq+"\" onclick=\"deleteComment(" + value.sSeq + "," + value.scSeq + ")\" value='댓글삭제'></li>";
 	            html += "</ul>";        
@@ -388,9 +387,9 @@ function getCommentList() {
 //----------------- 수정
 
 function updateCommentView(sSeq, scSeq, content) {
+
 	var id = document.getElementById("id").value;
-//	var content = $('#content').val();
-	//var content = document.getElementById("content").value;
+
 	console.log("sSeq=", sSeq);
 	console.log("scSeq=", scSeq);
 	console.log("content=", content);
@@ -414,7 +413,7 @@ function updateCommentView(sSeq, scSeq, content) {
     console.log("html=", html);
  
     $("#scSeq" + scSeq).replaceWith(html);
-    //$("#scSeq" + scSeq).replaceWith(html);
+  
     $("#scSeq" + scSeq + "#content").focus();
 }	
 

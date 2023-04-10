@@ -99,14 +99,25 @@
 
 				<input type="hidden" id="check" value="${sessionScope.user.id}">
 				<div class="right_icons">
-					<a id="goProfile1" href="insertShorts" onclick="check_id()"><div
-							class="sprite_camera_icon"></div></a> <a id="goProfile2" href="/"
-						onclick="check_id()"><div class="sprite_compass_icon"></div></a> <a
-						id="goProfile3" href="getLikeList.do?id=${sessionScope.user.id}"
-						onclick="check_id()"><div class="sprite_heart_icon_outline"></div></a>
+					<a id="goProfile1" href="insertShorts" onclick="check_id()">
+						<div class="sprite_camera_icon"></div>
+					</a> 
+					<a id="goProfile2" href="/" onclick="check_id()">
+						<div class="sprite_compass_icon"></div></a> 
+						<a id="goProfile3" href="getLikeList.do?id=${sessionScope.user.id}"
+						onclick="check_id()">
+						<div class="sprite_heart_icon_outline"></div>
+					</a>
+					
 					<a id="goProfile4" href="profile.do?id=${sessionScope.user.id}"
-						onclick="check_id()"><div class="sprite_user_icon_outline"></div></a>
-					<a href="insertShorts"><div class="sprite_short_icon"></div></a>
+						onclick="check_id()">
+						<div class="sprite_user_icon_outline"></div>
+					</a>
+					
+					<a href="insertShorts">
+						<div class="sprite_short_icon"></div>
+					</a>
+					
 				</div>
 
 			</section>
@@ -127,8 +138,8 @@
 					<div class="detail">
 						<div class="top">
 							<div class="user_name">KindTiger</div>
-							<a href="profile_edit.html" class="profile_edit">프로필편집</a> <a
-								href="#" class="logout">로그아웃</a>
+							<a href="profile_edit.html" class="profile_edit">프로필편집</a> 
+							<a href="#" class="logout">로그아웃</a>
 						</div>
 
 						<ul class="middle">
@@ -151,52 +162,16 @@
 					<c:forEach items="${shortsList}" var="shorts">
 						
 						<div class="content" id="content${shorts.pay}" style="padding-left: 5px;">
-							<a href="getShorts?sSeq=${shorts.sSeq}"> <video
-									id="video-player" onmouseover="this.play()"
-									onmouseout="this.pause()" preload="metadata">
-									<source src="shorts/${shorts.upload}#t=0.5">
-								</video>
+							<a href="getShorts?sSeq=${shorts.sSeq}"> 
+							<video id="video-player" onmouseover="this.play()" onmouseout="this.pause()" preload="metadata">
+								<source src="shorts/${shorts.upload}#t=0.5">
+							</video>
 							</a>
 
 						</div>
 					</c:forEach>
 				</div>
-
-
-
-
-
-				<!-- 
-            <div class="bookmark_contents contents_container">
-                <div class="pic">
-                    <a href="#"><img src="imgs/img_section/img03.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"><img src="imgs/img_section/img01.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"> <img src="imgs/img_section/img02.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"> <img src="imgs/img_section/img01.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"> <img src="imgs/img_section/img02.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"> <img src="imgs/img_section/img03.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"> <img src="imgs/img_section/img01.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"> <img src="imgs/img_section/img02.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"> <img src="imgs/img_section/img02.jpg" alt=""></a>
-                </div>
-            </div>
- -->
+			
 			</section>
 		</div>
 
